@@ -1,9 +1,7 @@
 {
-    "addons": [
-        {
-            "plan": "heroku-postgresql"
-        }
-    ],
+    "addons": [{
+        "plan": "heroku-postgresql"
+    }],
     "buildpacks": [],
     "env": {
         "NODE_ENV": {
@@ -12,6 +10,6 @@
         }
     },
     "formation": {},
-    "name": "bkapp",
+    "name": "sheet-chart",
     "scripts": {}
 }
