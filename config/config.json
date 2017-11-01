@@ -1,0 +1,18 @@
+{
+    "development": {
+        "dialect": "sqlite",
+        "storage": "./db.bkdb.sqlite"
+    },
+    "test": {
+        "dialect": "sqlite",
+        "storage": ":memory:"
+    },
+    "production": {
+        "username": "cn27529mysql",
+        "password": "bruce689",
+        "database": "bkdb",
+        "host": "35.193.14.81",
+        "dialect": "mysql"
+    }
+
+}

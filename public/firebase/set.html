@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Realtime Database</title>
+  <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="https://cdnjs.com/libraries/moment.js"></script>
+
+  <script>
+    // 初始化 Firebase
+    var config = {
+      apiKey: "AIzaSyAg0tGWsKqtjZcRnFPrBroVn8r111Q4EKY",
+      authDomain: "bkappdb.firebaseapp.com",
+      databaseURL: "https://bkappdb.firebaseio.com",
+      storageBucket: "bkappdb.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+    // 建立 DB
+    var db = firebase.database();
+
+    function writeUserData(userId, name, email) {
+
+      var ref = firebase.database().ref("users/");
+
+      var today = new Date();
+      var str = today.toGMTString();
+
+      var now = new Date;
+      var utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+      var t = new Date(1502267619349);
+      //var formatted = t.format("yyyy.mm.dd hh:MM:ss");
+
+      ref.push({
+        userid: userId,
+        username: name,
+        email: email,
+        //timestamp: now.toLocaleString()
+        timestamp: t.toISOString()
+
+      });
+
+    }
+
+    $(document).ready(function () {
+      /* 建立使用者 */
+      $("#create_user").click(function () {
+        var id = $('#create_id').val();
+        var email = $('#create_email').val();
+        var name = $('#create_name').val();
+        writeUserData(id, name, email);
+      });
+    });
+    
+  </script>
+</head>
+
+<body>
+  <h1>Firebase Realtime Database</h1>
+  <h3>建立使用者帳號</h3>
+  <input type="text" id="create_id" placeholder="ID" value="cn27529" />
+  <input type="text" id="create_email" placeholder="Email" value="cn27529@hotmail.com" />
+  <input type="text" id="create_name" placeholder="名稱" value="名稱cn27529" />
+  <button id="create_user">建立</button>
+</body>
+
+</html>

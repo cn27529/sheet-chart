@@ -1,0 +1,121 @@
+<!-- http://cythilya.blogspot.tw/2015/02/bootstrap-rwd-template.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- 自訂的css樣式 -->
+    <link href="./public/custom.css" rel="stylesheet">
+    <!-- 自訂的js程式碼檔案 -->
+    <script src="./public/custom.js"></script>
+    <!-- Google Map的js函式庫 -->
+    <script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="menuBar" style="margin-bottom:0px;">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- <a class="navbar-brand" href="/">Home</a> -->
+                    <a href="#home" class="navbar-center">
+                        <div class="top-logo" style="margin-top:4px;">
+                            <img src="/public/logo圓形藍字245.png" width="45vw">
+                        </div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/video">Video</a>
+                        </li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 第1個區塊 - 首頁 -->
+    <div id="home" class="home">
+        <div class="text-vcenter">
+            <h1>歡迎!</h1>
+            <h3>舞蹈生態系創意團隊Dancecology</h3>
+            <a href="#about" class="btn btn-default btn-lg">關於我們</a>
+        </div>
+    </div>
+    <!-- 第1個區塊 -->
+
+    <!-- 第2個區塊 - 關於我們 -->
+    <div id="about" class="top-bottom-pad">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <img src="./public/logo圓形藍字245.png" alt="" />
+                </div>
+                <div class="col-sm-6 text-center">
+                    <h2>關於我們</h2>
+                    <p class="lead">我們提供在專業的舞蹈創意服務與網頁建置服務、網頁程式撰寫與網路行銷等服務。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第2個區塊 -->
+
+
+    <!-- 第3區塊 - 產品服務 -->
+    <div id="services" class="top-bottom-pad">
+        <div class="container">
+            <h2 class="text-center">產品服務</h2>
+            <hr />
+            <div class="row text-center">
+                <div class="col-sm-3 col-xs-6">
+                    <i class="glyphicon glyphicon-cloud"> </i>
+                    <h4>XXX服務</h4>
+                    <p>這是一段範例的文字，裡面可以填上你想要的內容。這是一段範例的文字，裡面可以填上你想要的內容。</p>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="glyphicon glyphicon-leaf"> </i>
+                    <h4>Android手機App開發</h4>
+                    <p>這是一段範例的文字，裡面可以填上你想要的內容。這是一段範例的文字，裡面可以填上你想要的內容。</p>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="glyphicon glyphicon-phone-alt"> </i>
+                    <h4>Joomla! CMS建置</h4>
+                    <p>這是一段範例的文字，裡面可以填上你想要的內容。這是一段範例的文字，裡面可以填上你想要的內容。</p>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="glyphicon glyphicon-bullhorn"> </i>
+                    <h4>Facebook行銷</h4>
+                    <p>這是一段範例的文字，裡面可以填上你想要的內容。這是一段範例的文字，裡面可以填上你想要的內容。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第3區塊 -->
+
+
+</body>
+
+</html>

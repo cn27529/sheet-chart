@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase Authentication SDK signInWithEmailAndPassword</title>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <%title%>|Firebase Authentication SDK</h1>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Accounts and Password</a></li>
+            <li><a data-toggle="tab" href="#menu1">Facebook</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>Authenticate with Firebase using Password-Based Accounts using Javascript</h3>
+                <div class="form-group" style="width:50%;">
+                    <label for="email">email:</label>
+                    <input type="text" class="form-control" id="email">
+                </div>
+                <div class="form-group" style="width:50%;">
+                    <label for="password">password:</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <button id="signin" type="button" class="btn btn-default">GO</button>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Authenticate Using Facebook Login with JavaScript</h3>
+                <button id="fbsignin" type="button" class="btn btn-default">GO</button>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- <div class="jumbotron">
+            <div class="well">
+
+            </div>
+
+            <div class="well">
+
+            </div>
+
+        </div> -->
+
+        <div class="alert alert-info" id="msg">
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAg0tGWsKqtjZcRnFPrBroVn8r111Q4EKY",
+        authDomain: "bkappdb.firebaseapp.com",
+        databaseURL: "https://bkappdb.firebaseio.com",
+        projectId: "bkappdb",
+        storageBucket: "bkappdb.appspot.com",
+        messagingSenderId: "1087681092838"
+    };
+    firebase.initializeApp(config);
+
+    $(document).ready(function() {
+
+        $('#email').val('abc@gmail.com');
+        $('#password').val('123456');
+
+        $("#signin").click(function() {
+            /* Firebase 登入方法*/
+
+            var email = $('#email').val();
+            var password = $('#password').val();
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(function(user) {
+                    // Success
+                    console.log(user);
+                    var str = "己登入firebase完成<br>" + "email:" + user.email + "<br>" + "uid:" + user.uid + "<br>" + "emailVerified:" + user.emailVerified;
+                    $('#msg').html(str)
+                })
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    var str = "firebase登入失敗:" + errorCode + "<br>訊息:" + errorMessage;
+                    $('#msg').html(str)
+                    console.log(error);
+                });
+        });
+
+
+        $("#fbsignin").click(function() {
+
+            var provider = new firebase.auth.FacebookAuthProvider();
+
+            //provider.addScope('user_birthday');
+            //provider.setCustomParameters({                'display': 'popup'            });
+            console.log(provider);
+
+            firebase.auth().signInWithPopup(provider)
+                .then(function(result) {
+                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                    var token = result.credential.accessToken;
+                    // The signed-in user info.
+                    var user = result.user;
+                    // ...
+                    //console.log(user);
+                    var str = JSON.stringify(user);
+                    $('#msg').html(str)
+
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+
+                    // ...
+                    //console.log(error);
+
+                    var str = JSON.stringify(user);
+                    $('#msg').html(str)
+
+                });
+
+        });
+
+
+    });
+</script>
+
+</html>

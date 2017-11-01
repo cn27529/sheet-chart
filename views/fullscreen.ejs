@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>
+        <%=title%>
+    </title>
+    <script type="text/javascript">
+        //list of images for the slideshow
+        var imageList = ["Image3.jpg", "Image4.jpg", "Image5.jpg"];
+        var count = 0;
+        //invoke this when user wants to see a Full Screen Slideshow
+        function enterFullScreen() {
+            var elem = document.getElementById("slideshow");
+            //show full screen
+            elem.webkitRequestFullScreen();
+            setTimeout(changePicture, 3000);
+        }
+
+        function changePicture() {
+            count++;
+            //cycle through the list of images
+            document.getElementById("image1").src = imageList[count % imageList.length];
+            if (document.webkitIsFullScreen)
+                setTimeout(changePicture, 3000);
+            else
+            //if user exits the full screen mode
+                document.getElementById("image1").src = imageList[0];
+        }
+    </script>
+</head>
+
+<body>
+    <div id="slideshow">
+        <img id="image1" src="Image3.jpg"><img>
+    </div>
+    <br>
+    <input type="button" value="Enter full screen mode" onclick=enterFullScreen()>
+</body>
+
+</html>

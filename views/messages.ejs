@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=title%>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>
+                <%=title%>
+            </h1>
+            <p>hello
+                <%=title%>
+            </p>
+
+
+        </div>
+
+        <div id="app">
+            <ul>
+                <li v-for="data in messages">
+                    {{ data.userName }}
+                </li>
+            </ul>
+        </div>
+
+        <div id="link_app">
+            <ul>
+
+            </ul>
+        </div>
+
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12 center">
+                <p></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        //alert('1111111')
+        //var firebase = require('firebase');
+        // 初始化 Firebase
+        var config = {
+            apiKey: "AIzaSyAg0tGWsKqtjZcRnFPrBroVn8r111Q4EKY",
+            authDomain: "bkappdb.firebaseapp.com",
+            databaseURL: "https://bkappdb.firebaseio.com",
+            storageBucket: "bkappdb.appspot.com",
+        };
+        firebase.initializeApp(config);
+        // 建立 DB
+        var db = firebase.database()
+
+        var db_path = '/messages/'
+        var weathers_ref = db.ref(db_path);
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                messages: [] //訊息內容
+            },
+
+            // mounted是vue的生命週期之一，代表模板已編譯完成，已經取值準備渲染元件了
+            mounted() {
+                const vm = this;
+                weathers_ref.on('value', function(snapshot) {
+                    const val = snapshot.val();
+                    vm.messages = val;
+                    console.log(vm.messages)
+                })
+            },
+
+        })
+
+        var app = new Vue({
+            el: '#link_app',
+            data: null,
+            methods: {
+                add_row: function() {
+                    this.messages.push({
+                        newopen: true,
+                        message: this.message,
+                        userName: this.userName
+                    });
+                    this.message = '';
+                },
+                del_row: function() {},
+                // addUser: function() {
+                //     // if (this.isValid) {
+                //     //     usersRef.push(this.newUser)
+                //     //     this.newUser.name = ''
+                //     //     this.newUser.email = ''
+                //     // }
+                // },
+                // removeUser: function(user) {
+                //     //usersRef.child(user['.key']).remove()
+                // }
+            },
+            // computed property for form validation state
+            computed: {
+                validation: function() {
+                    return {
+                        //name: !!this.newUser.name.trim(),
+                        //email: emailRE.test(this.newUser.email)
+                    }
+                },
+                // isValid: function() {
+                //     var validation = this.validation
+                //     return Object.keys(validation).every(function(key) {
+                //         return validation[key]
+                //     })
+                // }
+            }
+        })
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=title%>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- 自訂的css樣式 -->
+    <link href="./public/custom.css" rel="stylesheet">
+    <!-- 自訂的js程式碼檔案 -->
+    <script src="./public/custom.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="menuBar" style="margin-bottom:20px;">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- <a class="navbar-brand" href="/">Home</a> -->
+                    <a href="/" class="navbar-center">
+                        <div class="top-logo" style="margin-top:4px;">
+                            <img src="/public/logo圓形藍字245.png" width="45vw">
+                        </div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/video">Video</a>
+                        </li>
+                        <li>
+                            <a href="/#services">Sitemap</a>
+                        </li>
+                        <li>
+                            <a href="/#about">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <!-- https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg -->
+        <video playsinline autoplay muted loop poster="https://firebasestorage.googleapis.com/v0/b/bkappdb.appspot.com/o/polina.jpg?alt=media&token=95ce826e-832c-44ae-8ab8-334540eefc2c" id="bgvid">
+            <!-- <source src="http://thenewcode.com/assets/videos/polina.webm" type="video/webm"> -->
+            <!-- <source src="http://thenewcode.com/assets/videos/polina.mp4" type="video/mp4"> -->
+            <!-- <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"> -->
+            <source id="source1" src="https://firebasestorage.googleapis.com/v0/b/bkappdb.appspot.com/o/polina.mp4?alt=media&token=fffbec6c-c99d-4b71-87bf-3568ac3cb886" type="video/mp4">
+        </video>
+    </div>
+
+</body>
+
+<script>
+    $(function() {
+
+        //$('#menuBar').slideUp(1000)
+
+        //show full screen
+        var myvideo = document.getElementById("bgvid");
+        if (myvideo.requestFullscreen) {
+            myvideo.requestFullscreen();
+            //alert('requestFullscreen');
+        } else if (myvideo.mozRequestFullScreen) {
+            myvideo.mozRequestFullScreen();
+            //alert('mozRequestFullScreen');
+        } else if (myvideo.webkitRequestFullscreen) {
+            myvideo.webkitRequestFullscreen();
+            //alert('webkitRequestFullscreen');
+        }
+
+        var source = myvideo.getElementById("source1");
+        //source.src = 'http://vjs.zencdn.net/v/oceans.mp4';
+
+        source.setAttribute('src', 'http://vjs.zencdn.net/v/oceans.mp4');
+
+        myvideo.appendChild(source);
+        myvideo.play();
+
+        //myvideo.load();
+
+    })
+</script>
+
+<style>
+    video {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg') no-repeat;
+        background-size: cover;
+        -webkit-transition: 1s opacity;
+        transition: 1s opacity;
+    }
+    
+    #menuBar {
+        opacity: .5;
+    }
+    
+    .jumbotron {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+
+
+</html>

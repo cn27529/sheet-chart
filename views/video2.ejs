@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=title%>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- BigVideo Dependencies -->
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+    <script>
+        window.jQuery || document.write('<script src="/public/jquery/jquery.min.js"><\/script>')
+    </script>
+    <script src="/public/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="/public/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="//vjs.zencdn.net/4.3/video.js"></script>
+
+    <!-- BigVideo -->
+    <script src="/public/BigVideo/lib/bigvideo.js"></script>
+
+    <style>
+        #menuBar {
+            opacity: .5;
+        }
+    </style>
+
+    <!-- Demo -->
+    <script>
+        $(function() {
+            var BV = new $.BigVideo();
+            BV.init();
+            BV.show('http://vjs.zencdn.net/v/oceans.mp4');
+            //http://vjs.zencdn.net/v/oceans.mp4
+            //http://thenewcode.com/assets/videos/polina.mp4
+            //$('#menuBar').slideUp(1000);
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="menuBar" style="margin-bottom:20px;">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- <a class="navbar-brand" href="/">Home</a> -->
+                    <a href="/" class="navbar-center">
+                        <img src="/public/logo圓形藍字245.png" width="50vw">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/video">Video</a>
+                        </li>
+                        <li>
+                            <a href="/sitemap">Sitemap</a>
+                        </li>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron">
+
+    </div>
+</body>
+
+<style media="screen">
+    .jumbotron99 {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+</html>
