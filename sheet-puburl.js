@@ -1,17 +1,35 @@
-var url_html = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pubhtml';
-//console.log(url_html)
+//https://github.com/Keyang/node-csvtojson
+var request = require('request')
+var csvtojson = require('csvtojson')
+var array2json = require('./array2json')
 
+var url_html = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pubhtml';
 var url_csv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pub?output=csv';
 
-var url_split = url_csv.split('/')
-    //console.log(url_split)
+function res_sheet_data(error, response, body) {
+    //console.log('error:', error); // Print the error if one occurred
+    //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    //console.log('body:', body); // Print the HTML for the Google homepage.
+    //return;
 
-var request = require('request')
+    var obj = [];
+    var csvStr = body;
+    csvtojson({ noheader: true })
+        .fromString(csvStr)
+        .on('csv', (csvRow, rowIndex) => { // this func will be called 3 times
+            //console.log(csvRow) // => [1,2,3] , [4,5,6]  , [7,8,9]
+            obj[rowIndex] = csvRow;
+        })
+        .on('done', () => {
+            //parsing finished
+            //console.log(obj[14])
+            var json = array2json(obj)
+            console.log(json)
+        })
 
-function res_sheet_url(error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
 }
 
-request(url_csv, res_sheet_url)
+var url_split = url_csv.split('/')
+var sheet_url = url_csv;
+//console.log(url_split)
+request(sheet_url, res_sheet_data)
