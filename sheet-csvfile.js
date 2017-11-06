@@ -28,6 +28,7 @@ function res_sheet_data(error, response, body) {
 
     var file_name = url_split[6] + '.txt';
 
+    file_name = 'test-csv.txt';
     write_file(file_name, csvStr)
 
     console.log('res_sheet_data end')
