@@ -1,7 +1,7 @@
 //https://github.com/Keyang/node-csvtojson
 var request = require('request')
 var csvtojson = require('csvtojson')
-var array2json = require('./array2json')
+var arraydata2json = require('./arraydata2json')
 
 var url_html = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pubhtml';
 var url_csv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pub?output=csv';
@@ -14,6 +14,7 @@ function res_sheet_data(error, response, body) {
 
     var obj = [];
     var csvStr = body;
+
     csvtojson({ noheader: true })
         .fromString(csvStr)
         .on('csv', (csvRow, rowIndex) => { // this func will be called 3 times
@@ -23,7 +24,7 @@ function res_sheet_data(error, response, body) {
         .on('done', () => {
             //parsing finished
             //console.log(obj[14])
-            var json = array2json(obj)
+            var json = arraydata2json(obj)
             console.log(json)
         })
 
@@ -32,4 +33,25 @@ function res_sheet_data(error, response, body) {
 var url_split = url_csv.split('/')
 var sheet_url = url_csv;
 //console.log(url_split)
-request(sheet_url, res_sheet_data)
+//request(sheet_url, res_sheet_data)
+
+
+// /** csv file
+//     a,b,c
+//     1,2,3
+//     4,5,6
+//     */
+
+// let csvFilePath = '<path to csv file>'
+// csvFilePath = url_csv;
+// const csv = require('csvtojson')
+// csv()
+//     .fromFile(csvFilePath)
+//     .on('json', (jsonObj) => {
+//         // combine csv header row and csv line to a json object
+//         // jsonObj.a ==> 1 or 4
+//         console.log(jsonObj)
+//     })
+//     .on('done', (error) => {
+//         console.log('end')
+//     })

@@ -1,7 +1,7 @@
 //csv-to-json.js
 //https://gist.github.com/iwek/7154578
 
-module.exports = function array2json(array_data) {
+module.exports = function arraydata2json(array_data) {
 
     var lines = array_data;
     var result = [];
