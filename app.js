@@ -50,6 +50,10 @@ var hello = require('./routes/hello');
 var weather = require('./routes/weather');
 var sitelinechat = require('./routes/sitelinechat');
 
+var d3js = require('./routes/d3js');
+
+app.use('/d3js', d3js);
+
 //app.use('/', index);
 //app.use('/index', index);
 app.use('/account', account);
