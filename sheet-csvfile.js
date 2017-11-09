@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require('fs')
 var request = require('request')
     //https://github.com/Keyang/node-csvtojson
 var csvtojson = require('csvtojson')
@@ -26,9 +26,7 @@ function res_sheet_data(error, response, body) {
     var obj = [];
     var csvStr = body;
 
-    var file_name = url_split[6] + '.txt';
-
-    file_name = 'test-csv.txt';
+    var file_name = 'test-csv.txt';
     write_file(file_name, csvStr)
 
     console.log('res_sheet_data end')

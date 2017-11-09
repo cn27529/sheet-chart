@@ -2,9 +2,22 @@
 var request = require('request')
 var csvtojson = require('csvtojson')
 var arraydata2json = require('./arraydata2json')
+var fs = require('fs')
 
 var url_html = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pubhtml';
 var url_csv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu1l2t6AOj8rFzwJ1WHxUYT34YmMuYvKeGmf3IjfuTGRGpuJqV0O-m69ckg5XGvZA9rOSwejOnYER4/pub?output=csv';
+
+function write_file(file_name, data) {
+
+    fs.writeFile(file_name, data, function(err) {
+        if (err)
+            console.log(err);
+        else
+            console.log('Write operation complete.');
+    });
+
+}
+
 
 function res_sheet_data(error, response, body) {
     //console.log('error:', error); // Print the error if one occurred
@@ -25,6 +38,10 @@ function res_sheet_data(error, response, body) {
             //parsing finished
             //console.log(obj[14])
             var json = arraydata2json(obj)
+            
+            var file_name = 'test-json.txt';
+            write_file(file_name, json)
+      
             console.log(json)
         })
 
@@ -33,7 +50,7 @@ function res_sheet_data(error, response, body) {
 var url_split = url_csv.split('/')
 var sheet_url = url_csv;
 //console.log(url_split)
-//request(sheet_url, res_sheet_data)
+request(sheet_url, res_sheet_data)
 
 
 // /** csv file
